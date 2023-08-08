@@ -1,4 +1,4 @@
-package config;
+package ru.maxima.springmvc.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
