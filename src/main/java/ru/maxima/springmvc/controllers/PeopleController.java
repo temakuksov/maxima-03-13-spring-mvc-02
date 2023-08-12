@@ -3,10 +3,9 @@ package ru.maxima.springmvc.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.maxima.springmvc.dao.PersonDAO;
+import ru.maxima.springmvc.models.Person;
 
 @Controller
 @RequestMapping("/people")
@@ -31,4 +30,20 @@ public class PeopleController {
         model.addAttribute("onePersonById", personDAO.getPersonById(id));
         return "people/get-person";
     }
+
+    @GetMapping("/new")
+    public String getFormToCreateNewPerson(Model model) {
+        model.addAttribute("newPerson", new Person());
+        return "people/new-person";
+    }
+
+    @PostMapping()
+    public String createPerson(@RequestParam("name") String name) {
+        Person person = new Person();
+
+        person.setName(name);
+        PersonDAO.savePerson(person);
+        return "people/new-person";
+    }
+
 }

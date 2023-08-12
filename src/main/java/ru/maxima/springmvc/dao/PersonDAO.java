@@ -8,15 +8,17 @@ import java.util.List;
 
 @Component
 public class PersonDAO {
-    private final List<Person> people;
 
-    {
+    private static Long PEOPLE_COUNT = 0L;
+    private static final List<Person> people;
+
+    static {
         people = new ArrayList<>();
 
-        people.add(new Person(1L, "Aram"));
-        people.add(new Person(2L, "Bogdan"));
-        people.add(new Person(3L, "Artem"));
-        people.add(new Person(4L, "Victor"));
+        people.add(new Person(++PEOPLE_COUNT, "Aram"));
+        people.add(new Person(++PEOPLE_COUNT, "Bogdan"));
+        people.add(new Person(++PEOPLE_COUNT, "Artem"));
+        people.add(new Person(++PEOPLE_COUNT, "Victor"));
     }
 
     public List<Person> getAllPeople() {
@@ -25,5 +27,10 @@ public class PersonDAO {
 
     public Person getPersonById(Long id) {
         return people.stream().filter(person -> person.getId().equals(id)).findAny().orElse(null);
+    }
+
+    public static void savePerson(Person person) {
+        person.setId(++PEOPLE_COUNT);
+        people.add(person);
     }
 }

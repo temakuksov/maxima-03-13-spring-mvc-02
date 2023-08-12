@@ -9,6 +9,9 @@ public class Person {
         this.name = name;
     }
 
+    public Person() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -17,4 +20,9 @@ public class Person {
         return name;
     }
 
-  }
+    public void setId(Long id) {
+    }
+
+    public void setName(String name) {
+    }
+}
