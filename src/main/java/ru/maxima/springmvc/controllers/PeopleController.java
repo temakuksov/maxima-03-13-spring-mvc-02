@@ -26,7 +26,7 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public String getPersonById(@PathVariable Long id, Model model) {
+    public String getPersonById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("onePersonById", personDAO.getPersonById(id));
         return "people/get-person";
     }
