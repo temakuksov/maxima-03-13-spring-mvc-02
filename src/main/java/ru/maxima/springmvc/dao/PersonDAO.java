@@ -29,7 +29,7 @@ public class PersonDAO {
         return people.stream().filter(person -> person.getId().equals(id)).findAny().orElse(null);
     }
 
-    public static void savePerson(Person person) {
+    public static void save(Person person) {
         person.setId(++PEOPLE_COUNT);
         people.add(person);
     }

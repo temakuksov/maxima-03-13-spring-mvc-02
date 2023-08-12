@@ -42,8 +42,8 @@ public class PeopleController {
         Person person = new Person();
 
         person.setName(name);
-        PersonDAO.savePerson(person);
-        return "people/get-all-people";
+        PersonDAO.save(person);
+        return "redirect:/people";
     }
 
 }
