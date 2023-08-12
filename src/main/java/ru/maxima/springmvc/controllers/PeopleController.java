@@ -43,7 +43,7 @@ public class PeopleController {
 
         person.setName(name);
         PersonDAO.savePerson(person);
-        return "people/new-person";
+        return "people/get-all-people";
     }
 
 }
