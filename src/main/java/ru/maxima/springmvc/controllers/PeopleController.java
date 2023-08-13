@@ -40,7 +40,6 @@ public class PeopleController {
     @PostMapping()
     public String createPerson(@RequestParam("name") String name) {
         Person person = new Person();
-
         person.setName(name);
         PersonDAO.save(person);
         return "redirect:/people";
