@@ -38,11 +38,20 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String createPerson(@RequestParam("name") String name) {
-        Person person = new Person();
-        person.setName(name);
+    public String createPerson(@ModelAttribute("newPerson") Person person) {
         PersonDAO.save(person);
         return "redirect:/people";
     }
 
+    @GetMapping("/{id}/edit")
+    public String editPerson(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("editPerson", personDAO.getPersonById(id));
+        return "people/edit-person";
+    }
+
+    @PostMapping("/{id}")
+    public String updatePerson(@ModelAttribute("editPerson") Person person, @PathVariable("id") Long id) {
+        personDAO.update(id, person);
+        return "redirect:/people";
+    }
 }

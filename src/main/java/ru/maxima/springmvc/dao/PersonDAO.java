@@ -3,6 +3,7 @@ package ru.maxima.springmvc.dao;
 import org.springframework.stereotype.Component;
 import ru.maxima.springmvc.models.Person;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,5 +33,10 @@ public class PersonDAO {
     public static void save(Person person) {
         person.setId(++PEOPLE_COUNT);
         people.add(person);
+    }
+
+    public void update(Long id, Person updatedPerson) {
+        Person personToBeUpd = getPersonById(id);
+        personToBeUpd.setName(updatedPerson.getName());
     }
 }
