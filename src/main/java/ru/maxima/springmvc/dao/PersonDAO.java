@@ -3,9 +3,9 @@ package ru.maxima.springmvc.dao;
 import org.springframework.stereotype.Component;
 import ru.maxima.springmvc.models.Person;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class PersonDAO {
@@ -38,5 +38,9 @@ public class PersonDAO {
     public void update(Long id, Person updatedPerson) {
         Person personToBeUpd = getPersonById(id);
         personToBeUpd.setName(updatedPerson.getName());
+    }
+
+    public void delete(Long id) {
+        people.removeIf(person -> Objects.equals(person.getId(), id));
     }
 }
