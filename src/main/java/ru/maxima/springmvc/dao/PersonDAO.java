@@ -5,29 +5,28 @@ import ru.maxima.springmvc.models.Person;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Component
 public class PersonDAO {
 
-    private static Long PEOPLE_COUNT = 0L;
-    private static final List<Person> people;
+    private static long PEOPLE_COUNT = 0L;
+    private static List<Person> people;
 
-    static {
+    {
         people = new ArrayList<>();
 
-        people.add(new Person(++PEOPLE_COUNT, "Aram"));
-        people.add(new Person(++PEOPLE_COUNT, "Bogdan"));
-        people.add(new Person(++PEOPLE_COUNT, "Artem"));
-        people.add(new Person(++PEOPLE_COUNT, "Victor"));
+        people.add(new Person(++PEOPLE_COUNT, "Aram", "Great"));
+        people.add(new Person(++PEOPLE_COUNT, "Bogdan", "Titomir"));
+        people.add(new Person(++PEOPLE_COUNT, "Artem", "Ivanov"));
+        people.add(new Person(++PEOPLE_COUNT, "Victor", "Mentor"));
     }
 
     public List<Person> getAllPeople() {
         return people;
     }
 
-    public Person getPersonById(Long id) {
-        return people.stream().filter(person -> person.getId().equals(id)).findAny().orElse(null);
+    public Person getPersonById(long id) {
+        return people.stream().filter(person -> person.getId() == (id)).findAny().orElse(null);
     }
 
     public static void save(Person person) {
@@ -35,12 +34,13 @@ public class PersonDAO {
         people.add(person);
     }
 
-    public void update(Long id, Person updatedPerson) {
+    public void update(long id, Person updatedPerson) {
         Person personToBeUpd = getPersonById(id);
         personToBeUpd.setName(updatedPerson.getName());
+        personToBeUpd.setSurname(updatedPerson.getSurname());
     }
 
-    public void delete(Long id) {
-        people.removeIf(person -> Objects.equals(person.getId(), id));
+    public void delete(long id) {
+        people.removeIf(person -> person.getId() == id);
     }
 }

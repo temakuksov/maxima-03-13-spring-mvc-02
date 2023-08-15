@@ -26,7 +26,7 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public String getPersonById(@PathVariable("id") Long id, Model model) {
+    public String getPersonById(@PathVariable("id") long id, Model model) {
         model.addAttribute("onePersonById", personDAO.getPersonById(id));
         return "people/get-person";
     }
@@ -44,19 +44,19 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}/edit")
-    public String editPerson(Model model, @PathVariable("id") Long id) {
+    public String editPerson(Model model, @PathVariable("id") long id) {
         model.addAttribute("editPerson", personDAO.getPersonById(id));
         return "people/edit-person";
     }
 
     @PostMapping("/{id}")
-    public String updatePerson(@ModelAttribute("editPerson") Person person, @PathVariable("id") Long id) {
+    public String updatePerson(@ModelAttribute("editPerson") Person person, @PathVariable("id") long id) {
         personDAO.update(id, person);
         return "redirect:/people";
     }
 
     @DeleteMapping("/{id}")
-    public String deletePerson(@PathVariable("id") Long  id) {
+    public String deletePerson(@PathVariable("id") Long id) {
         personDAO.delete(id);
         return "redirect:/people";
     }
