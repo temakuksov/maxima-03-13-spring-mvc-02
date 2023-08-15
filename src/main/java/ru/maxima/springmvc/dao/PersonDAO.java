@@ -41,7 +41,7 @@ public class PersonDAO {
     }
 
     public void delete(long id) {
-        // people.removeIf(person -> person.getId() == id);
-        people.remove((int)id);
+        people.removeIf(person -> person.getId() == id);
+        // people.remove((int)id);
     }
 }
