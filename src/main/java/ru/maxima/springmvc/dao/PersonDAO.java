@@ -10,9 +10,9 @@ import java.util.List;
 public class PersonDAO {
 
     private static long PEOPLE_COUNT = 0L;
-    private static List<Person> people;
+    private static final List<Person> people;
 
-    {
+    static {
         people = new ArrayList<>();
 
         people.add(new Person(++PEOPLE_COUNT, "Aram", "Great"));
@@ -41,6 +41,7 @@ public class PersonDAO {
     }
 
     public void delete(long id) {
-        people.removeIf(person -> person.getId() == id);
+        // people.removeIf(person -> person.getId() == id);
+        people.remove((int)id);
     }
 }
